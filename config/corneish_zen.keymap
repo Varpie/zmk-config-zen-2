@@ -3,81 +3,81 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-  chosen {
-    zmk,matrix_transform = &default_transform;
-  };
+    chosen {
+        zmk,physical-layout = &foostan_corne_6col_layout;
+    };
 };
 
 / {
-        behaviors {
-                td_alt: tap_dance_alt {
-                        compatible = "zmk,behavior-tap-dance";
-                        label = "TAP_DANCE_ALT";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&kp RALT>, <&kp LALT>;
-                };
-
-                td_lay: tap_dance_layer_gui {
-                        compatible = "zmk,behavior-tap-dance";
-                        #binding-cells = <0>;
-                        tapping-term-ms = <200>;
-                        bindings = <&mo 1>, <&kp LGUI>;
-                };
+    behaviors {
+        td_alt: tap_dance_alt {
+                compatible = "zmk,behavior-tap-dance";
+                label = "TAP_DANCE_ALT";
+                #binding-cells = <0>;
+                tapping-term-ms = <200>;
+                bindings = <&kp RALT>, <&kp LALT>;
         };
-        
-        combos {
-                compatible = "zmk,combos";
-                
-                combo_bt_clear {
-                        layers = <1>;
-                        key-positions = <33 34>;
-                        bindings = <&bt BT_CLR>;
-                };
 
-                combo_tab {
-                        layers = <0>;
-                        key-positions = <2 3>;
-                        bindings = <&kp TAB>;
-                };
-
-                combo_esc {
-                        layers = <0>;
-                        key-positions = <14 15 16>;
-                        bindings = <&kp ESC>;
-                };
+        td_lay: tap_dance_layer_gui {
+                compatible = "zmk,behavior-tap-dance";
+                #binding-cells = <0>;
+                tapping-term-ms = <200>;
+                bindings = <&mo 1>, <&kp LGUI>;
         };
-        
-        keymap {
-                compatible = "zmk,keymap";
+    };
 
-                default_layer {
-                        label = "ALPHA ";
+    combos {
+        compatible = "zmk,combos";
+
+        combo_bt_clear {
+                layers = <1>;
+                key-positions = <33 34>;
+                bindings = <&bt BT_CLR>;
+        };
+
+        combo_tab {
+                layers = <0>;
+                key-positions = <2 3>;
+                bindings = <&kp TAB>;
+        };
+
+        combo_esc {
+                layers = <0>;
+                key-positions = <14 15 16>;
+                bindings = <&kp ESC>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+                display-name = "ALPHA ";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | [ |
 // |ESC/SU|  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  | ' |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ] |
 //                    | CTL | SPC |LY/SU|   | BKSP| ENT  | ALT |
-                        bindings = <
+                bindings = <
    &kp TAB      &kp Q &kp W &kp E &kp R &kp T     &kp Y &kp U  &kp I     &kp O   &kp P    &kp LBKT
    &mt LGUI ESC &kp A &kp S &kp D &kp F &kp G     &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &mt LSHFT Z &kp X &kp C &kp V &kp B  &kp N &kp M  &kp COMMA &kp DOT &mt RSHFT FSLH &kp RBKT
-                 &kp LCTRL &kp SPACE &td_lay      &kp BSPC  &mt RALT RET   &td_alt
-                        >;
-                };
-                lower_layer {
-                        label = "NUMBER";
+             &kp LCTRL &kp SPACE &td_lay      &kp BSPC  &mt RALT RET   &td_alt
+                >;
+        };
+        lower_layer {
+                display-name = "NUMBER";
 // -----------------------------------------------------------------------------------------
 // |   $  |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  -  |
 // |ESC/SU|  F6 | F7  | F8  | F9  | F10 |   | F11 | DWN |  UP | LFT | RGT |  =  |
 // | SHFT |  F1 | F2  | F3  | F4  | F5  |   | F12 |BTDWN| BTUP|BTCLR|BTCLR|  \  |
 //                    |     |     |     |   | DEL |     | ALT |
-                        bindings = <
+                bindings = <
    &kp GRAVE    &kp N1 &kp N2 &kp N3 &kp N4 &kp N5    &kp N6   &kp N7     &kp N8     &kp N9    &kp N0    &kp MINUS
    &mt LGUI ESC &kp F6 &kp F7 &kp F8 &kp F9 &kp F10   &kp F11  &kp DOWN   &kp UP     &kp LEFT  &kp RIGHT &kp EQUAL
    &kp LSHFT    &kp F1 &kp F2 &kp F3 &kp F4 &kp F5    &kp F12  &bt BT_PRV &bt BT_NXT &trans    &trans    &kp BSLH
-                         &trans &trans &trans         &kp DEL  &trans   &td_alt
-                        >;
-                };
+                 &trans &trans &trans         &kp DEL  &trans   &td_alt
+                >;
         };
+    };
 };
